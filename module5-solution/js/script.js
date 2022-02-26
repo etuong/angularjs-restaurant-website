@@ -157,6 +157,40 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
       buildAndShowMenuItemsHTML);
   };
 
+  // Function that produces a random number from 1 to 5 (inclusively)
+  function getRandomInteger() {
+    return Math.ceil(Math.random() * 5);
+  }
+
+  // Load the about view
+  dc.loadAboutHtml = function () {
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(
+      aboutHtmlUrl,
+      buildAndShowAboutHTML,
+      false);
+  }
+
+  // Builds HTML for the about page
+  function buildAndShowAboutHTML(aboutHtml) {
+    var rating = getRandomInteger();
+    var fullStarClass = "fa fa-star";
+    var emptyStarClass = "fa fa-star-o";
+    var className;
+
+    for (var i = 1; i <= 5; i++) {
+      className = "star" + i;
+
+      if (i <= rating) {
+        aboutHtml = insertProperty(aboutHtml, className, fullStarClass);
+      } else {
+        aboutHtml = insertProperty(aboutHtml, className, emptyStarClass);
+      }
+    }
+    aboutHtml = insertProperty(aboutHtml, "rating", rating);
+
+    insertHtml("#main-content", aboutHtml);
+  }
 
   // Builds HTML for the categories page based on the data
   // from the server
@@ -211,8 +245,6 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     finalHtml += "</section>";
     return finalHtml;
   }
-
-
 
   // Builds HTML for the single category page based on the data
   // from the server
