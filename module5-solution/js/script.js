@@ -179,7 +179,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     var className;
 
     for (var i = 1; i <= 5; i++) {
-      className = "star" + i;
+      className = "class" + i;
 
       if (i <= rating) {
         aboutHtml = insertProperty(aboutHtml, className, fullStarClass);
