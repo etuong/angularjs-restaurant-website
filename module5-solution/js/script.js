@@ -163,7 +163,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
   }
 
   // Load the about view
-  dc.loadAboutHtml = function () {
+  dc.loadAbout = function () {
     showLoading("#main-content");
     $ajaxUtils.sendGetRequest(
       aboutHtmlUrl,
