@@ -41,7 +41,8 @@
       <div class="col-md-6" ng-controller="ToBuyController as toBuyList">
         <h2>To Buy:</h2>
         <ul>
-          <li ng-repeat="item in toBuyList.items">Buy <input type="number" ng-model=item.quantity> {{ item.name }} at
+          <li ng-repeat="item in toBuyList.items">Buy <input type="number" ng-model=item.quantity min="1"> {{ item.name
+            }} at
             {{ item.pricePerItem | customCurrency }} each<button class="btn btn-default"
               ng-click="toBuyList.addToCart($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
           </li>
