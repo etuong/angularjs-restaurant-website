@@ -1,64 +1,55 @@
 (function () {
   'use strict';
+  angular.module('NarrowItDownApp', [])
+    .controller('NarrowItDownController', NarrowItDownController)
+    .service('MenuSearchService', MenuSearchService)
+    .constant('menu_items_url', 'https://davids-restaurant.herokuapp.com/menu_items.json')
+    .directive('foundItems', FoundItemsDirective);
 
-  angular.module('ShoppingListCheckOff', [])
-    .controller('ToBuyController', ToBuyController)
-    .controller('AlreadyBoughtController', AlreadyBoughtController)
-    .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
-    .filter('customCurrency', customCurrencyFilter);
-
-  ToBuyController.$inject = ['ShoppingListCheckOffService'];
-  function ToBuyController(ShoppingListCheckOffService) {
-    var toBuyList = this;
-    toBuyList.items = ShoppingListCheckOffService.items;
-
-    toBuyList.addToCart = function (index) {
-      if (Number.isInteger(index)) {
-        ShoppingListCheckOffService.addToCart(index);
-      }
-    }
-
-    toBuyList.isEmpty = () => toBuyList?.items?.length < 1
+  function FoundItemsDirective() {
+    return {
+      scope: {
+        found: '<',
+        onRemove: '&'
+      },
+      bindToController: true,
+      templateUrl: 'itemTemplate.html',
+      controller: NarrowItDownController,
+      controllerAs: 'menu_items'
+    };
   }
 
-  AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-  function AlreadyBoughtController(ShoppingListCheckOffService) {
-    var cart = this;
-
-    cart.items = ShoppingListCheckOffService.cart;
-
-    cart.isEmpty = () => cart.items.length < 1;
-
-  }
-
-  function ShoppingListCheckOffService() {
-    // List of prepopulated items to buy
-    this.items = [
-      { name: "Cookies", quantity: 10, pricePerItem: 1 },
-      { name: "Chocolate", quantity: 8, pricePerItem: 3 },
-      { name: "Chips", quantity: 20, pricePerItem: 1.5 },
-      { name: "Milk", quantity: 2, pricePerItem: 2.5 },
-      { name: "Oatmeal", quantity: 12, pricePerItem: 10 },
-      { name: "Chicken", quantity: 5, pricePerItem: 3.4 },
-      { name: "Popcorn", quantity: 8, pricePerItem: 2 },
-      { name: "Pudding", quantity: 20, pricePerItem: 5.5 },
-      { name: "Bread", quantity: 1, pricePerItem: 3.9 },
-      { name: "Cake", quantity: 5, pricePerItem: 7 }
-    ];
-
-    this.cart = [];
-
-    this.addToCart = index => {
-      // Get the item and check validity of quantity before pushing to cart
-      var item = this.items[index];
-      var quantity = item.quantity;
-      if (Number.isInteger(quantity) && quantity > 0) {
-        this.cart.push(this.items.splice(index, 1)[0]);
-      }
+  NarrowItDownController.$inject = ['MenuSearchService'];
+  function NarrowItDownController(MenuSearchService) {
+    this.found = [];
+    this.search = (searchTerm) => {
+      MenuSearchService.getMatchedMenuItems(searchTerm)
+        .then(response => { this.found = response; console.log(response); })
+        .catch(error => console.log(error));
+    };
+    this.remove = (index) => {
+      this.found.splice(index, 1);
     }
   }
 
-  function customCurrencyFilter() {
-    return val => '$$$' + val.toFixed(2);
+  MenuSearchService.$inject = ['menu_items_url', '$http'];
+  function MenuSearchService(menu_items_url, $http) {
+    this.getMatchedMenuItems = (searchTerm) => {
+      var config = {
+        method: "GET",
+        url: menu_items_url
+      };
+      return $http(config)
+        .then(result => {
+          let foundItems = [];
+          for (let item of result.data.menu_items) {
+            if (item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+              foundItems.push(item);
+            }
+          }
+          return foundItems;
+        })
+        .catch(error => console.log(error));
+    };
   }
 })();
