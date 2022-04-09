@@ -14,7 +14,7 @@
         <th scope="row">{{ item.short_name }}</th>
         <td>{{ item.name }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.price_large }}</td>
+        <td>${{ item.price_large }}</td>
         <td>
           <button class="btn btn-danger" ng-click="menu_items.onRemove({index: $index});">
             Don't want this one!
