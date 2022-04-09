@@ -13,7 +13,7 @@
         onRemove: '&'
       },
       bindToController: true,
-      templateUrl: 'itemTemplate.html',
+      templateUrl: 'templates/itemTemplate.html',
       controller: NarrowItDownController,
       controllerAs: 'menu_items'
     };
@@ -25,7 +25,10 @@
     this.search = () => {
       console.log(this.searchTerm)
       MenuSearchService.getMatchedMenuItems(this.searchTerm)
-        .then(response => { this.found = response; console.log(response); })
+        .then(response => {
+          this.found = response;
+          console.log(response);
+        })
         .catch(error => console.log(error));
     };
     this.removeItem = (index) => {
@@ -42,13 +45,11 @@
       };
       return $http(config)
         .then(result => {
-          let foundItems = [];
-          for (let item of result.data.menu_items) {
-            if (item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-              foundItems.push(item);
-            }
-          }
-          return foundItems;
+          return result.data.menu_items.filter(item => {
+            var description = item.description.toLowerCase();
+            return description.indexOf(searchTerm) > -1;
+          });
+
         })
         .catch(error => console.log(error));
     };
