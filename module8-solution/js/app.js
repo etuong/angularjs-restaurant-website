@@ -22,12 +22,13 @@
   NarrowItDownController.$inject = ['MenuSearchService'];
   function NarrowItDownController(MenuSearchService) {
     this.found = [];
-    this.search = (searchTerm) => {
-      MenuSearchService.getMatchedMenuItems(searchTerm)
+    console.log(this.searchTerm)
+    this.search = () => {
+      MenuSearchService.getMatchedMenuItems(this.searchTerm)
         .then(response => { this.found = response; console.log(response); })
         .catch(error => console.log(error));
     };
-    this.remove = (index) => {
+    this.removeItem = (index) => {
       this.found.splice(index, 1);
     }
   }
