@@ -1,0 +1,4 @@
+<div ng-if="menu_items.items.length < 1">Nothing Found</div>
+<ul class="col-xs-12">
+    <li ng-repeat="item in menu_items.items">{{item.name}}<button ng-click="menu_items.onRemove({index:$index})">Don't want this one!</button></li>
+</ul>
