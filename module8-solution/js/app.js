@@ -23,8 +23,8 @@
   function NarrowItDownController(MenuSearchService) {
     this.found = [];
     console.log(this.searchTerm)
-    this.search = () => {
-      MenuSearchService.getMatchedMenuItems(this.searchTerm)
+    this.search = (searchTerm) => {
+      MenuSearchService.getMatchedMenuItems(searchTerm)
         .then(response => { this.found = response; console.log(response); })
         .catch(error => console.log(error));
     };
