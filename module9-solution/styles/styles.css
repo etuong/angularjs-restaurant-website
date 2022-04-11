@@ -1,0 +1,16 @@
+body {
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.navbar {
+  margin-bottom: 0px;
+  min-height: auto;
+}
+
+.home {
+  margin-top: 20px;
+}
