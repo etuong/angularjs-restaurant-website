@@ -59,18 +59,14 @@
         controller: 'InfoController',
         controllerAs: 'infoCtrl',
         resolve: {
-          userPreferences: ['MenuService', 'UserPreferenceService', (MenuService, UserPreferenceService) => {
-            var userPreferences = UserPreferenceService.getUserPreferences();
-            return userPreferences && userPreferences.favoriteDish ? MenuService.getMenuItem(userPreferences.favoriteDish)
-              .then(menuItem => {
-                return {
-                  firstName: userPreferences.firstName,
-                  lastName: userPreferences.lastName,
-                  email: userPreferences.email,
-                  phone: userPreferences.phone,
-                  favDish: menuItem
-                };
-              }) : null;
+          userPreferences: ['UserPreferenceService', UserPreferenceService => {
+            return UserPreferenceService.getUserPreferences();
+          }],
+          menuItem: ['MenuService', 'userPreferences', function (MenuService, userPreferences) {
+            if (!userPreferences) {
+              return null;
+            }
+            return MenuService.getMenuItem(userPreferences.favDish).then(response => response);
           }]
         }
       });

@@ -8,14 +8,12 @@
   function SignupController(MenuService, UserPreferenceService) {
     var controller = this;
 
-    controller.submit = form => {
+    controller.submit = () => {
       if (!controller.invalidMenuItem) {
         UserPreferenceService.setUserPreferences(controller.user);
         controller.saved = true;
-        form.$setPristine();
       } else
         controller.saved = false;
-
     };
 
     controller.checkMenuItem = shortName => {
