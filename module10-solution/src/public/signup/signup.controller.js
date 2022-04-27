@@ -18,7 +18,7 @@
 
     controller.checkMenuItem = shortName => {
       if (shortName) {
-        MenuService.doesMenuItemExist(shortName.toUpperCase()).then(validity => controller.invalidMenuItem = !validity)
+        MenuService.doesMenuItemExist(shortName).then(validity => controller.invalidMenuItem = !validity)
       }
     }
   }

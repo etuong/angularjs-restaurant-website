@@ -19,7 +19,7 @@
       return $http.get(`${ApiPath}/menu_items.json`, config).then(response => response.data);
     };
 
-    service.getMenuItem = shortName => $http.get(`${ApiPath}/menu_items/${shortName}.json`).then(response => response.data);
+    service.getMenuItem = shortName => $http.get(`${ApiPath}/menu_items/${shortName.toUpperCase()}.json`).then(response => response.data);
 
     service.doesMenuItemExist = shortname => {
       return service.getMenuItem(shortname).then(() => {
