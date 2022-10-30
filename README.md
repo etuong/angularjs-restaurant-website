@@ -1,4 +1,6 @@
-# en605.787
+# Single Page Web Applications with AngularJS
+
+[Coursera](https://www.coursera.org/learn/single-page-web-apps-with-angularjs)
 
 1. Dev Env Setup & Introduction to HTML5
 1. Introduction to CSS3 and Responsive Design
