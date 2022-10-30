@@ -1,8 +1,9 @@
 (function () {
   "use strict";
 
-  angular.module('common')
-    .service('UserPreferenceService', UserPreferenceService);
+  angular
+    .module("common")
+    .service("UserPreferenceService", UserPreferenceService);
 
   UserPreferenceService.$inject = [];
   function UserPreferenceService() {
@@ -11,9 +12,9 @@
 
     service.getUserPreferences = () => {
       return preferences;
-    }
+    };
 
-    service.setUserPreferences = userPreferences => {
+    service.setUserPreferences = (userPreferences) => {
       preferences = userPreferences;
     };
   }

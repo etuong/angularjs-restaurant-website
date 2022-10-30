@@ -1,10 +1,11 @@
 (function () {
   "use strict";
 
-  angular.module('common')
-    .factory('loadingHttpInterceptor', LoadingHttpInterceptor);
+  angular
+    .module("common")
+    .factory("loadingHttpInterceptor", LoadingHttpInterceptor);
 
-  LoadingHttpInterceptor.$inject = ['$rootScope', '$q'];
+  LoadingHttpInterceptor.$inject = ["$rootScope", "$q"];
   /**
    * Tracks when a request begins and finishes. When a
    * request starts, a progress event is emitted to allow
@@ -13,9 +14,8 @@
    * we assume the request has ended and emit a finish event.
    */
   function LoadingHttpInterceptor($rootScope, $q) {
-
     var loadingCount = 0;
-    var loadingEventName = 'spinner:activate';
+    var loadingEventName = "spinner:activate";
 
     return {
       request: function (config) {
@@ -42,8 +42,7 @@
         }
 
         return $q.reject(response);
-      }
+      },
     };
   }
-
 })();

@@ -1,13 +1,12 @@
 (function () {
-  'use strict';
+  "use strict";
 
-  angular.module('public')
-    .controller('InfoController', InfoController);
+  angular.module("public").controller("InfoController", InfoController);
 
-  InfoController.$inject = ['userPreferences', 'menuItem'];
+  InfoController.$inject = ["userPreferences", "menuItem"];
   function InfoController(userPreferences, menuItem) {
     var controller = this;
     controller.userPreferences = userPreferences;
-    controller.menuItem = menuItem
+    controller.menuItem = menuItem;
   }
-})()
+})();

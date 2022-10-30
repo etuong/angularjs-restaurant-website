@@ -2,7 +2,7 @@ body {
   font-size: 16px;
   color: #fff;
   background-color: #61122f;
-  font-family: 'Oxygen', sans-serif;
+  font-family: "Oxygen", sans-serif;
 }
 
 .initial-loading {
@@ -17,7 +17,7 @@ body {
 }
 
 #logo-img {
-  background: url('../images/restaurant-logo_large.png') no-repeat;
+  background: url("../images/restaurant-logo_large.png") no-repeat;
   width: 150px;
   height: 150px;
   margin: 10px 15px 10px 0;
@@ -29,7 +29,7 @@ body {
 
 .navbar-brand h1 {
   /* Restaurant name */
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   color: #557c3e;
   font-size: 1.5em;
   text-transform: uppercase;
@@ -37,7 +37,7 @@ body {
   text-shadow: 1px 1px 1px #222;
   margin-top: 0;
   margin-bottom: 0;
-  line-height: .75;
+  line-height: 0.75;
 }
 
 .navbar-brand a:hover,
@@ -49,7 +49,7 @@ body {
   /* Kosher cert */
   color: #000;
   text-transform: uppercase;
-  font-size: .7em;
+  font-size: 0.7em;
   margin-top: 15px;
 }
 
@@ -63,12 +63,12 @@ body {
 }
 
 #nav-list a {
-  color: #951C49;
+  color: #951c49;
   text-align: center;
 }
 
 #nav-list a:hover {
-  background: #E7E7E7;
+  background: #e7e7e7;
 }
 
 #nav-list a span {
@@ -122,14 +122,14 @@ body {
   line-height: 2;
 }
 
-#hours>span,
-#address>span {
+#hours > span,
+#address > span {
   font-size: 1.3em;
 }
 
 #address p {
   color: #557c3e;
-  font-size: .8em;
+  font-size: 0.8em;
   line-height: 1.8;
 }
 
@@ -149,10 +149,9 @@ a[ui-sref="admin.auth"] {
 
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
-
   /* Header */
   #logo-img {
-    background: url('../images/restaurant-logo_medium.png') no-repeat;
+    background: url("../images/restaurant-logo_medium.png") no-repeat;
     width: 100px;
     height: 100px;
     margin: 5px 5px 5px 0;
@@ -161,10 +160,8 @@ a[ui-sref="admin.auth"] {
   /* End Header */
 }
 
-
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
-
   /* Header */
   .navbar-brand {
     padding-top: 10px;
@@ -180,7 +177,7 @@ a[ui-sref="admin.auth"] {
 
   .navbar-brand p {
     /* Kosher cert */
-    font-size: .6em;
+    font-size: 0.6em;
     margin-top: 12px;
   }
 
@@ -200,7 +197,7 @@ a[ui-sref="admin.auth"] {
     margin-right: 5px;
   }
 
-  #call-btn>a {
+  #call-btn > a {
     font-size: 1.5em;
     display: block;
     margin: 0 20px;
@@ -212,8 +209,8 @@ a[ui-sref="admin.auth"] {
 
   #xs-deliver {
     margin-top: 5px;
-    font-size: .7em;
-    letter-spacing: .1em;
+    font-size: 0.7em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
@@ -237,10 +234,8 @@ a[ui-sref="admin.auth"] {
   /* End Footer */
 }
 
-
 /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
 @media (max-width: 479px) {
-
   /* Header */
   .navbar-brand h1 {
     /* Restaurant name */
