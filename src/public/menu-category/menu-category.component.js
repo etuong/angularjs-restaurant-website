@@ -6,5 +6,12 @@
     bindings: {
       category: "<",
     },
+    controller: MenuCategoryController,
   });
+
+  MenuCategoryController.$inject = ["ApiPath"];
+  function MenuCategoryController(ApiPath) {
+    var $ctrl = this;
+    $ctrl.basePath = ApiPath;
+  }
 })();
